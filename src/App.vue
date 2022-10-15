@@ -1,12 +1,15 @@
 <template>
-    <my-header></my-header>
+  <my-header></my-header>
+  <bs-body></bs-body>
 </template>
 
 <script>
 import MyHeader from "@/Components/MyHeader";
+import BsBody from "@/Components/BsBody";
 
 export default {
   components: {
+    BsBody,
     MyHeader
   }
 }

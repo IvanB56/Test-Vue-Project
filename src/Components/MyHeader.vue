@@ -13,12 +13,10 @@
 </template>
 <script>
 import MyList from "@/Components/MyList";
-import MyButton from "@/Components/UI/MyButton";
-import MyInput from "@/Components/UI/MyInput";
 
 export default {
   name: 'my-header',
-  components: {MyButton, MyList, MyInput}
+  components: {MyList}
 }
 </script>
 <style scoped>
