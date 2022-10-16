@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 .input {
-  background-color: #E5E5E5;
+  background-color: #F6F3F3;
   border: 1px solid #E1E1E1;
   border-radius: 0;
   padding: 10px;
