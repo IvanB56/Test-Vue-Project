@@ -65,6 +65,11 @@ export default {
       ],
     }
   },
+  mounted() {
+    if (localStorage.getItem('cards')) {
+      this.cards = JSON.parse(localStorage.getItem('cards'));
+    }
+  },
   methods: {
     addBasket(card) {
       this.cards = this.cards.filter(el => {
@@ -73,7 +78,7 @@ export default {
         }
         return el;
       })
-      // localStorage.setItem('cards', JSON.stringify(this.cards));
+      localStorage.setItem('cards', JSON.stringify(this.cards));
     },
     findCard(card) {
       this.cards = this.cards.filter(el => {
