@@ -7,15 +7,15 @@
       <div class="info-inner">
         <div class="title">
           <p>{{ card.name }}</p>
-          <p>{{ card.autor }}</p>
+          <p>{{ card.author }}</p>
         </div>
         <div v-if="!card.sailed" class="info">
           <div class="cost">
             <span class="cost__old" v-if="!!card.old_cost">{{ card.old_cost }}</span>
             <span>{{ card.cost }}</span>
           </div>
-          <my-button v-if="!card.isBasket">Купить</my-button>
-          <my-button v-else>В корзине</my-button>
+          <my-button v-if="!card.isBasket" @click="$emit('addBasket', card)" :data-key="card.id">Купить</my-button>
+          <my-button v-else><i class="fa fa-check" aria-hidden="true"></i> В корзине</my-button>
         </div>
         <div v-else class="sailed">
           <span>Продана на аукционе</span>
@@ -33,8 +33,7 @@ export default {
       type: Object,
       required: true,
     }
-  }
-
+  },
 }
 </script>
 

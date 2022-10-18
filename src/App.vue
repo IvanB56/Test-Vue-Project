@@ -1,6 +1,6 @@
 <template>
-  <my-header></my-header>
-  <bs-body :cards="cards"></bs-body>
+  <my-header @findCard="findCard"></my-header>
+  <bs-body :cards="cards" @addBasket="addBasket"></bs-body>
   <my-footer></my-footer>
 </template>
 
@@ -17,53 +17,71 @@ export default {
   },
   data() {
     return {
-      originalData: [
+      cards: [
         {
           id: 1,
-          'img': '/imgs/1.png',
-          'name': '«Рождение Венеры»',
-          'autor': 'Сандро Боттичелли',
+          img: '/imgs/1.png',
+          name: '«Рождение Венеры»',
+          author: 'Сандро Боттичелли',
           'old_cost': '2 000 000 $',
-          'cost': '1 000 000 $',
+          cost: '1 000 000 $',
           sailed: false,
           isBasket: false,
+          showed: true,
         },
         {
           id: 2,
-          'img': '/imgs/2.png',
-          'name': '«Тайная вечеря»',
-          'autor': 'Леонардо да Винчи',
+          img: '/imgs/2.png',
+          name: '«Тайная вечеря»',
+          author: 'Леонардо да Винчи',
           'old_cost': '',
-          'cost': '3 000 000 $',
+          cost: '3 000 000 $',
           sailed: false,
           isBasket: false,
+          showed: true,
         },
         {
           id: 3,
-          'img': '/imgs/3.png',
-          'name': '«Сотворение Адама»',
-          'autor': 'Микеланджело',
+          img: '/imgs/3.png',
+          name: '«Сотворение Адама»',
+          author: 'Микеланджело',
           'old_cost': '6 000 000 $',
-          'cost': '5 000 000 $',
+          cost: '5 000 000 $',
           sailed: false,
           isBasket: true,
+          showed: true,
         },
         {
           id: 4,
-          'img': '/imgs/4.png',
-          'name': '«Урок анатомии»',
-          'autor': 'Рембрандт',
+          img: '/imgs/4.png',
+          name: '«Урок анатомии»',
+          author: 'Рембрандт',
           'old_cost': '',
-          'cost': '',
+          cost: '',
           sailed: true,
           isBasket: false,
+          showed: true,
         },
       ],
-      cards: [],
     }
   },
-  beforeMount() {
-    this.cards = this.originalData;
+  methods: {
+    addBasket(card) {
+      this.cards = this.cards.filter(el => {
+        if (el.id === card.id) {
+          el.isBasket = true;
+        }
+        return el;
+      })
+      // localStorage.setItem('cards', JSON.stringify(this.cards));
+    },
+    findCard(card) {
+      this.cards = this.cards.filter(el => {
+        el.showed = el.name.toLowerCase().indexOf(card.name.toLowerCase()) !== -1;
+        if (card.name === '') el.showed = true;
+        return el;
+      })
+    },
   }
 }
 </script>

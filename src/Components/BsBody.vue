@@ -7,6 +7,8 @@
             v-for="card in cards"
             :card="card"
             :key="card.id"
+            @addBasket="$emit('addBasket', card)"
+            :class="!card.showed ? 'hide' : ''"
         ></bs-card>
       </div>
     </div>
@@ -40,5 +42,9 @@ export default {
 
 h2 {
   margin-top: 25px;
+}
+
+.hide {
+  display: none;
 }
 </style>

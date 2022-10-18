@@ -5,8 +5,11 @@
         <my-list></my-list>
       </div>
       <div class="search">
-        <my-input placeholder="Поиск по названию картин"/>
-        <my-button>Найти</my-button>
+        <my-input
+            placeholder="Поиск по названию картин"
+            v-model="card.name"
+        />
+        <my-button @click="$emit('findCard', card)">Найти</my-button>
       </div>
     </div>
   </div>
@@ -16,7 +19,14 @@ import MyList from "@/Components/MyList";
 
 export default {
   name: 'my-header',
-  components: {MyList}
+  components: {MyList},
+  data() {
+    return {
+      card: {
+        name: ''
+      }
+    }
+  },
 }
 </script>
 <style scoped>
